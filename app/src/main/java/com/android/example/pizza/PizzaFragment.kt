@@ -1,24 +1,38 @@
 package com.android.example.pizza
 
+import android.content.Context
 import android.os.Bundle
+import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import androidx.fragment.app.ListFragment
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.android.example.pizza.databinding.ActivityMainBinding
+import com.android.example.pizza.databinding.FragmentPizzaBinding
 
 
-class PizzaFragment : ListFragment() {
+class PizzaFragment :Fragment() {
 
+    private lateinit var pizzaFragmentRV:RecyclerView
+    private lateinit var viewBinding: FragmentPizzaBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
+
+        viewBinding = FragmentPizzaBinding.inflate(LayoutInflater.from(context))
+
+        pizzaFragmentRV = viewBinding.recyclerView
+        pizzaFragmentRV.layoutManager = LinearLayoutManager(context)
+        pizzaFragmentRV.adapter = PizzaFragmentAdapter()
+        pizzaFragmentRV.setHasFixedSize(true)
 
 
-        val adapter:ArrayAdapter<String> = ArrayAdapter(inflater.context, android.R.layout.simple_list_item_1,resources.getStringArray(R.array.pizzas))
-        listAdapter = adapter
-        return super.onCreateView(inflater, container, savedInstanceState)
+
+
+        return viewBinding.root
     }
 
 
