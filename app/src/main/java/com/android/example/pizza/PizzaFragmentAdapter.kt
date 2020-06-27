@@ -10,6 +10,10 @@ class PizzaFragmentAdapter: RecyclerView.Adapter<PizzaFragmentViewHolder>() {
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PizzaFragmentViewHolder {
 		val view = LayoutInflater.from(parent.context).inflate(R.layout.card_captioned_image,parent, false)
+
+
+
+
 		return PizzaFragmentViewHolder(view)
 	}
 
