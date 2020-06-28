@@ -1,5 +1,6 @@
 package com.android.example.pizza
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ class PizzaFragment :Fragment() {
     private lateinit var pizzaFragmentRV:RecyclerView
     private lateinit var viewBinding: FragmentPizzaBinding
 
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
@@ -25,6 +27,14 @@ class PizzaFragment :Fragment() {
         pizzaFragmentRV.adapter = PizzaFragmentAdapter()
         pizzaFragmentRV.setHasFixedSize(true)
 
+
+//        clickAdapter.setOnClickListenerRecyclerView(object : PizzaFragmentAdapter.IOnClickListenerRecyclerView{
+////            override fun onItemClick(position: Int) {
+////                val intent: Intent = Intent(context, OrderActivity::class.java)
+////                startActivity(intent)
+////            }
+////
+////        })
 
 
 

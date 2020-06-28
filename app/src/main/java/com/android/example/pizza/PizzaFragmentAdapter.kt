@@ -1,16 +1,19 @@
 package com.android.example.pizza
 
+import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class PizzaFragmentAdapter: RecyclerView.Adapter<PizzaFragmentViewHolder>() {
+ class PizzaFragmentAdapter: RecyclerView.Adapter<PizzaFragmentViewHolder>(){
 	private val pizzas = DataPizzas.pizzas
 
 
-	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PizzaFragmentViewHolder {
-		val view = LayoutInflater.from(parent.context).inflate(R.layout.card_captioned_image,parent, false)
 
+
+	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PizzaFragmentViewHolder {
+		val view = LayoutInflater.from(parent.context).inflate(R.layout.card_captioned_image, parent, false)
 
 
 
@@ -24,7 +27,15 @@ class PizzaFragmentAdapter: RecyclerView.Adapter<PizzaFragmentViewHolder>() {
 	override fun onBindViewHolder(holder: PizzaFragmentViewHolder, position: Int) {
 		holder.fragmentImage.setImageResource(pizzas[position].getImageResourceId())
 		holder.fragmentTittle.text = pizzas[position].getName()
+		val context = holder.itemView.context
+
+		holder.itemView.setOnClickListener {
+			context.startActivity(Intent(context, OrderActivity::class.java))
+		}
+
+
 	}
-
-
 }
+
+
+
