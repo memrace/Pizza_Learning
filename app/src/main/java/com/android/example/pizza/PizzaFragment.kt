@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.example.pizza.databinding.FragmentPizzaBinding
 
 
-class PizzaFragment :Fragment() {
+class PizzaFragment :Fragment(), PizzaFragmentAdapter.IRecyclerViewListener {
 
     private lateinit var pizzaFragmentRV:RecyclerView
     private lateinit var viewBinding: FragmentPizzaBinding
@@ -24,7 +24,7 @@ class PizzaFragment :Fragment() {
 
         pizzaFragmentRV = viewBinding.recyclerView
         pizzaFragmentRV.layoutManager = LinearLayoutManager(context)
-        pizzaFragmentRV.adapter = PizzaFragmentAdapter()
+        pizzaFragmentRV.adapter = PizzaFragmentAdapter(this)
         pizzaFragmentRV.setHasFixedSize(true)
 
 
@@ -39,6 +39,11 @@ class PizzaFragment :Fragment() {
 
 
         return viewBinding.root
+    }
+
+    override fun onRecyclerViewClick(position: Int) {
+        val intent = Intent(context,OrderActivity::class.java)
+        startActivity(intent)
     }
 
 

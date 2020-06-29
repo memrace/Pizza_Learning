@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
- class PizzaFragmentAdapter: RecyclerView.Adapter<PizzaFragmentViewHolder>(){
+ class PizzaFragmentAdapter(private val onRecyclerViewClick:PizzaFragmentAdapter.IRecyclerViewListener): RecyclerView.Adapter<PizzaFragmentViewHolder>(){
 	private val pizzas = DataPizzas.pizzas
 
 
@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 
-		return PizzaFragmentViewHolder(view)
+		return PizzaFragmentViewHolder(view,onRecyclerViewClick)
 	}
 
 	override fun getItemCount(): Int {
@@ -27,14 +27,22 @@ import androidx.recyclerview.widget.RecyclerView
 	override fun onBindViewHolder(holder: PizzaFragmentViewHolder, position: Int) {
 		holder.fragmentImage.setImageResource(pizzas[position].getImageResourceId())
 		holder.fragmentTittle.text = pizzas[position].getName()
-		val context = holder.itemView.context
+		/*
+		Bad Version OnClickListener
+		 */
 
-		holder.itemView.setOnClickListener {
-			context.startActivity(Intent(context, OrderActivity::class.java))
-		}
-
+//		val context = holder.itemView.context
+//
+//		holder.itemView.setOnClickListener {
+//			context.startActivity(Intent(context, OrderActivity::class.java))
+//		}
 
 	}
+
+
+	 interface IRecyclerViewListener {
+		 fun onRecyclerViewClick(position:Int)
+	 }
 }
 
 
